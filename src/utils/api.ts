@@ -2,9 +2,14 @@ import { FeedbackType } from "../pages/Feedback"
 
 const rootPath = "https://obscure-reaches-09029.herokuapp.com/"
 
+type indexProps = {
+  page: number,
+  postPerPage: number
+}
 
-export const getFeedbacksIndex = async () => {
-  const query = await fetch(`${rootPath}/feedbacks`)
+export const getFeedbacksIndex = async (props: indexProps) => {
+  const {page, postPerPage} = props
+  const query = await fetch(`${rootPath}/feedbacks?p=${page}&n=${postPerPage}`)
   console.log(query)
   const res = await query.json()
   console.log(res)
